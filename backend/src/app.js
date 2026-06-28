@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("🚀 Welcome to AthithyaOS Backend!");
+    res.send("🚀 Welcome to Yuganata Techonlogies AthithyaOS Backend!");
 });
 
 app.use("/users", usersRoutes);
