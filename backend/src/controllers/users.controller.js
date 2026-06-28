@@ -15,5 +15,91 @@ async function getUsers(req, res) {
 }
 
 module.exports = {
-    getUsers
+    getUsers,
+    createUser,
+    getUserById,
+    updateUser
 };
+
+async function createUser(req, res) {
+
+    try {
+
+        const newUser = await userService.createUser(req.body);
+
+        res.status(201).json({
+            message: "User created successfully",
+            data: newUser
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Database Error"
+        });
+
+    }
+
+}
+
+async function getUserById(req, res) {
+
+    try {
+
+        const id = req.params.id;
+
+        const user = await userService.getUserById(id);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.json(user);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Database Error"
+        });
+
+    }
+
+}
+
+async function updateUser(req, res) {
+
+    try {
+
+        const id = req.params.id;
+        const userData = req.body;
+
+        const updatedUser = await userService.updateUser(id, userData);
+
+        if (!updatedUser) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.json({
+            message: "User updated successfully",
+            data: updatedUser
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Database Error"
+        });
+
+    }
+
+}
