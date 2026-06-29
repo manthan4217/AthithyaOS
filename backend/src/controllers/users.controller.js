@@ -18,7 +18,8 @@ module.exports = {
     getUsers,
     createUser,
     getUserById,
-    updateUser
+    updateUser,
+    deleteUser
 };
 
 async function createUser(req, res) {
@@ -90,6 +91,37 @@ async function updateUser(req, res) {
         res.json({
             message: "User updated successfully",
             data: updatedUser
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Database Error"
+        });
+
+    }
+
+}
+
+async function deleteUser(req, res) {
+
+    try {
+
+        const id = req.params.id;
+
+        const deletedUser = await userService.deleteUser(id);
+
+        if (!deletedUser) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.json({
+            message: "User deleted successfully",
+            data: deletedUser
         });
 
     } catch (error) {

@@ -1,5 +1,20 @@
 $kind: http-request
 name: New Request
-url: ""
-method: GET
+url: http://localhost:5000/users/3
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"role_id\": 3,\r
+
+    \    \"full_name\": \"Test User\",\r
+
+    \    \"email\": \"test@example.com\",\r
+
+    \    \"phone\": \"9999999999\",\r
+
+    \    \"password_hash\": \"password123\"\r
+
+    }"
 order: 1782668531052

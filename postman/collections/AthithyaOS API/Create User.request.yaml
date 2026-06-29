@@ -1,4 +1,14 @@
 $kind: http-request
-url: ""
-method: GET
+name: Create User
+url: http://localhost:5000/auth/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"raj@example.com\",\r
+
+    \    \"password\": \"password123\"\r
+
+    }"
 order: 1769220423051191
