@@ -2,7 +2,7 @@ const userService = require("../services/users.service");
 
 async function getUsers(req, res) {
     try {
-        const users = await userService.getAllUsers();
+        const users = await userService.getAllUsers(req.user);
 
         res.json(users);
     } catch (error) {
@@ -28,9 +28,11 @@ async function createUser(req, res) {
 
         const newUser = await userService.createUser(req.body);
 
+        const { password_hash, ...safeUser } = newUser;
+
         res.status(201).json({
             message: "User created successfully",
-            data: newUser
+            data: safeUser
         });
 
     } catch (error) {

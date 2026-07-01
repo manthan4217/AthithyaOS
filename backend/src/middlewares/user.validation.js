@@ -5,7 +5,7 @@ function validateCreateUser(req, res, next) {
         full_name,
         email,
         phone,
-        password_hash
+        password
     } = req.body;
 
     if (
@@ -13,7 +13,7 @@ function validateCreateUser(req, res, next) {
         !full_name ||
         !email ||
         !phone ||
-        !password_hash
+        !password
     ) {
         return res.status(400).json({
             message: "All fields are required"
